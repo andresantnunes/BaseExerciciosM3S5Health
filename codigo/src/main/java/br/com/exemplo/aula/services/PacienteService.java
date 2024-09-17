@@ -13,8 +13,6 @@ import java.util.stream.Collectors;
 public class PacienteService {
 
     private final PacienteRepository pacienteRepository;
-
-
     public PacienteService(PacienteRepository pacienteRepository) {
         this.pacienteRepository = pacienteRepository;
     }
