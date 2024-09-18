@@ -3,18 +3,22 @@ package br.com.exemplo.aula.services;
 import br.com.exemplo.aula.entities.Paciente;
 import br.com.exemplo.aula.controllers.dto.PacienteRequestDTO;
 import br.com.exemplo.aula.controllers.dto.PacienteResponseDTO;
+import br.com.exemplo.aula.mapper.PacienteMapper;
 import br.com.exemplo.aula.repositories.PacienteRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @Service
 public class PacienteService {
 
     private final PacienteRepository pacienteRepository;
-    public PacienteService(PacienteRepository pacienteRepository) {
+    private final PacienteMapper pacienteMapper;
+    public PacienteService(PacienteRepository pacienteRepository, PacienteMapper pacienteMapper) {
         this.pacienteRepository = pacienteRepository;
+        this.pacienteMapper = pacienteMapper;
     }
 
     public List<PacienteResponseDTO> listarPacientes() {
@@ -31,18 +35,12 @@ public class PacienteService {
     }
 
     public PacienteResponseDTO buscarPaciente(Long id){
-        Paciente paciente = pacienteRepository.findById(id).orElse(null);
-        if (paciente != null) {
-            return new PacienteResponseDTO(
-                    paciente.getId(),
-                    paciente.getNome(),
-                    paciente.getDataNascimento(),
-                    paciente.getCpf(),
-                    paciente.getTelefone(),
-                    paciente.getEmail()
-            );
-        }
-        return null;
+        Paciente paciente = pacienteRepository.findById(id).orElseThrow(
+                () -> new RuntimeException("Erro ao buscar paciente")
+        );
+
+        return pacienteMapper.toResponse(paciente);
+
     }
 
     public PacienteResponseDTO salvarPaciente(PacienteRequestDTO request) {
@@ -89,6 +87,8 @@ public class PacienteService {
     }
 
     public void removerPaciente(Long id) {
+
+
         pacienteRepository.deleteById(id);
     }
     
