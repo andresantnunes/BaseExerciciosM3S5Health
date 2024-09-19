@@ -1,13 +1,26 @@
 package br.com.exemplo.aula.entities;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "nutricionista")
+@NoArgsConstructor
+@Data
 public class Nutricionista {
+
+    public Nutricionista(Long id, String nome, String matricula, int tempoExperiencia, String crn, String especialidade) {
+        this.id = id;
+        this.nome = nome;
+        this.matricula = matricula;
+        this.tempoExperiencia = tempoExperiencia;
+        this.crn = crn;
+        this.especialidade = especialidade;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
