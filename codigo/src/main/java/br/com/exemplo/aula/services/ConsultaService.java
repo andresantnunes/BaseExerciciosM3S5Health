@@ -52,6 +52,23 @@ public class ConsultaService {
         return null;
     }
 
+    public ConsultaResponseDTO atualizarConsulta(Long id, ConsultaRequestDTO consultaRequestDTO){
+        Consulta consulta = consultaRepository.findById(id).orElse(null);
+
+        Consulta consultaSalva = consultaRepository.save(mapearRequest(consultaRequestDTO));
+
+        if (consulta != null) {
+            return new ConsultaResponseDTO(
+                    consultaSalva.getId(),
+                    consultaSalva.getNutricionista(),
+                    consultaSalva.getPaciente(),
+                    consultaSalva.getData(),
+                    consultaSalva.getObservacoes()
+            );
+        }
+        return null;
+    }
+
     public ConsultaResponseDTO salvarConsulta(ConsultaRequestDTO request) {
         Consulta consulta = mapearRequest(request);
         Consulta entitySalva = consultaRepository.save(consulta);

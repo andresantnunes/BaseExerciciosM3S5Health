@@ -34,5 +34,22 @@ public class ConsultaController {
         }
 
     }
+
+    @GetMapping("/{id}")
+    public ConsultaResponseDTO buscarConsultaPorId(
+            @PathVariable("id") Long id
+    ) {
+        var consulta = consultaService.buscarConsulta(id);
+        return consulta;
+    }
+
+    @PutMapping("/{id}")
+    public ConsultaResponseDTO atualizarConsultaPorId(
+            @PathVariable("id") Long id,
+            @RequestBody ConsultaRequestDTO consultaRequest
+    ) {
+        var consulta = consultaService.atualizarConsulta(id, consultaRequest);
+        return consulta;
+    }
     
 }
