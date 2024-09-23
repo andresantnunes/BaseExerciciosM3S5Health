@@ -38,7 +38,7 @@ public class ConsultaService {
 
     }
 
-    public ConsultaResponseDTO buscarConsulta(Long id){
+    public ConsultaResponseDTO buscarConsulta(Long id) {
         Consulta consulta = consultaRepository.findById(id).orElse(null);
         if (consulta != null) {
             return new ConsultaResponseDTO(
@@ -52,21 +52,20 @@ public class ConsultaService {
         return null;
     }
 
-    public ConsultaResponseDTO atualizarConsulta(Long id, ConsultaRequestDTO consultaRequestDTO){
+    public ConsultaResponseDTO atualizarConsulta(Long id, ConsultaRequestDTO consultaRequestDTO) {
         Consulta consulta = consultaRepository.findById(id).orElse(null);
 
-        Consulta consultaSalva = consultaRepository.save(mapearRequest(consultaRequestDTO));
+        assert consulta != null;
+        Consulta consultaSalva = consultaRepository.save(consulta);
 
-        if (consulta != null) {
-            return new ConsultaResponseDTO(
-                    consultaSalva.getId(),
-                    consultaSalva.getNutricionista(),
-                    consultaSalva.getPaciente(),
-                    consultaSalva.getData(),
-                    consultaSalva.getObservacoes()
-            );
-        }
-        return null;
+        return new ConsultaResponseDTO(
+                consultaSalva.getId(),
+                consultaSalva.getNutricionista(),
+                consultaSalva.getPaciente(),
+                consultaSalva.getData(),
+                consultaSalva.getObservacoes()
+        );
+
     }
 
     public ConsultaResponseDTO salvarConsulta(ConsultaRequestDTO request) {
@@ -81,7 +80,7 @@ public class ConsultaService {
         );
     }
 
-    private Consulta mapearRequest(ConsultaRequestDTO source){
+    private Consulta mapearRequest(ConsultaRequestDTO source) {
         Consulta target = new Consulta();
         target.setData(source.getData());
         target.setObservacoes(source.getObservacoes());

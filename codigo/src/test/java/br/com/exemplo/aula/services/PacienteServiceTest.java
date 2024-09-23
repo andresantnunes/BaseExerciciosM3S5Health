@@ -24,6 +24,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
+
+// EX 02
 @ExtendWith(MockitoExtension.class) // permite a execução do mockito
 class PacienteServiceTest {
 

@@ -1,11 +1,15 @@
 package br.com.exemplo.aula.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "consulta")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Consulta {
 
     @Id

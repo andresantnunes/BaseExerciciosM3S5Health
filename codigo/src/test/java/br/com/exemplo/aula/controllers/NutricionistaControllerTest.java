@@ -20,6 +20,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
+// Exemplo
 @WebMvcTest(controllers = NutricionistaController.class)
     // realiza os testes apenas dos compoonentes de Controller
 @AutoConfigureMockMvc

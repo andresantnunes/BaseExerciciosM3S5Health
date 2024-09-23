@@ -22,6 +22,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
+// EX 05
 @WebMvcTest(controllers = PacienteController.class)
 @AutoConfigureMockMvc
 @ActiveProfiles("Test")

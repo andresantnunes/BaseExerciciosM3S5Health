@@ -17,6 +17,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.DEFINED_PORT)
 @AutoConfigureMockMvc
 @ActiveProfiles("Test")
+
+// Exemplo de teste de Integração
 class PacienteControllerTestExemploAula {
 
     @Autowired

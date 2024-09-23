@@ -19,6 +19,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 
+// EX 04
 @SpringBootTest
 @ActiveProfiles("Test")
 class NutricionistaServiceSpringTest {
